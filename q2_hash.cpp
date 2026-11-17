@@ -20,5 +20,20 @@ int main() {
     cout << "PRN: 202501100061" << endl;
     cout << "Domain: Cold-Drink Flavours" << endl;
 
+    vector<int> data = {
+        61, 74, 87, 0, 13,
+        26, 39, 52, 65, 78,
+        91, 4, 17, 30, 43,
+        56, 69, 82, 95, 8
+    };
+
+    cout << "\nPersonalized Dataset:\n";
+
+    for (int value : data) {
+        cout << value << " ";
+    }
+
+    cout << endl;
+
     return 0;
 }
