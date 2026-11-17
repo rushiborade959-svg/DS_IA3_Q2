@@ -6,7 +6,7 @@ using namespace std;
 
 const int TABLE_SIZE = 29;
 
-// Mid-Square method
+// Mid-Square hashing
 string getMiddleDigits(int key) {
     int square = key * key;
     string squareStr = to_string(square);
@@ -22,13 +22,11 @@ string getMiddleDigits(int key) {
 // Calculate hash index
 int calculateHash(int key) {
     string middle = getMiddleDigits(key);
-    int middleValue = stoi(middle);
-    return middleValue % TABLE_SIZE;
+    return stoi(middle) % TABLE_SIZE;
 }
 
 int main() {
     // PRN: 202501100061
-    // Last four digits (S): 0061 = 61
     // Domain: Cold-drink flavours
     // Collision handling: Separate Chaining
 
@@ -39,9 +37,9 @@ int main() {
         56, 69, 82, 95, 8
     };
 
-    cout << "Q2 Hash Table Project" << endl;
-    cout << "PRN: 202501100061" << endl;
-    cout << "Domain: Cold-drink flavours" << endl;
+    cout << "Q2 Hash Table Project\n";
+    cout << "PRN: 202501100061\n";
+    cout << "Domain: Cold-drink flavours\n";
     cout << "Table Size: " << TABLE_SIZE << endl;
 
     cout << "\nHash Index Calculation:\n";
@@ -53,7 +51,7 @@ int main() {
              << endl;
     }
 
-    // Separate Chaining
+    // Implement Separate Chaining
     vector<vector<int>> table(TABLE_SIZE);
 
     for (int key : data) {
@@ -95,8 +93,31 @@ int main() {
                 }
             }
 
-            cout << " (Collision)" << endl;
+            cout << " (Collision)\n";
         }
+    }
+
+    // Final validation
+    int totalElements = 0;
+    int collisionBuckets = 0;
+
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        totalElements += table[i].size();
+
+        if (table[i].size() > 1) {
+            collisionBuckets++;
+        }
+    }
+
+    cout << "\nFinal Validation:\n";
+    cout << "Total input values: " << data.size() << endl;
+    cout << "Total inserted elements: " << totalElements << endl;
+    cout << "Collision buckets: " << collisionBuckets << endl;
+
+    if (totalElements == data.size()) {
+        cout << "Validation: SUCCESS\n";
+    } else {
+        cout << "Validation: FAILED\n";
     }
 
     return 0;
