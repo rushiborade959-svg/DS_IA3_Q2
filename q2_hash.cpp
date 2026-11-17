@@ -6,25 +6,32 @@ using namespace std;
 
 const int TABLE_SIZE = 29;
 
+// Mid-Square method
 string getMiddleDigits(int key) {
-    string square = to_string(key * key);
+    int square = key * key;
+    string squareStr = to_string(square);
 
-    while (square.length() < 4) {
-        square = "0" + square;
+    while (squareStr.length() < 4) {
+        squareStr = "0" + squareStr;
     }
 
-    int start = (square.length() - 2) / 2;
-    return square.substr(start, 2);
+    int start = (squareStr.length() - 2) / 2;
+    return squareStr.substr(start, 2);
 }
 
+// Calculate hash index
 int calculateHash(int key) {
     string middle = getMiddleDigits(key);
     int middleValue = stoi(middle);
-
     return middleValue % TABLE_SIZE;
 }
 
 int main() {
+    // PRN: 202501100061
+    // Last four digits (S): 0061 = 61
+    // Domain: Cold-drink flavours
+    // Collision handling: Separate Chaining
+
     vector<int> data = {
         61, 74, 87, 0, 13,
         26, 39, 52, 65, 78,
@@ -34,6 +41,7 @@ int main() {
 
     cout << "Q2 Hash Table Project" << endl;
     cout << "PRN: 202501100061" << endl;
+    cout << "Domain: Cold-drink flavours" << endl;
     cout << "Table Size: " << TABLE_SIZE << endl;
 
     cout << "\nHash Index Calculation:\n";
@@ -43,6 +51,52 @@ int main() {
              << " | Middle digits: " << getMiddleDigits(key)
              << " | Hash Index: " << calculateHash(key)
              << endl;
+    }
+
+    // Separate Chaining
+    vector<vector<int>> table(TABLE_SIZE);
+
+    for (int key : data) {
+        int index = calculateHash(key);
+        table[index].push_back(key);
+    }
+
+    cout << "\nHash Table using Separate Chaining:\n";
+
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        cout << "Index " << i << ": ";
+
+        if (table[i].empty()) {
+            cout << "Empty";
+        } else {
+            for (int j = 0; j < table[i].size(); j++) {
+                cout << table[i][j];
+
+                if (j < table[i].size() - 1) {
+                    cout << " -> ";
+                }
+            }
+        }
+
+        cout << endl;
+    }
+
+    cout << "\nCollision Details:\n";
+
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (table[i].size() > 1) {
+            cout << "Index " << i << ": ";
+
+            for (int j = 0; j < table[i].size(); j++) {
+                cout << table[i][j];
+
+                if (j < table[i].size() - 1) {
+                    cout << " -> ";
+                }
+            }
+
+            cout << " (Collision)" << endl;
+        }
     }
 
     return 0;
