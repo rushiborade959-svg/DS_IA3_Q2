@@ -2,24 +2,30 @@
 /*
   Data Structures - Internal Activity 3
   Question 2: Hash Table with Recorded Development Log
-
   PRN: 202501100061
-  Seed S: 61
+  Seed: 61
   Domain: Cold-Drink Flavours
-  Dataset size: 20
   Hash Function: Mid-Square
   Collision Strategy: Separate Chaining
 */
 
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
-int main() {
-    cout << "Q2 Hash Table Project" << endl;
-    cout << "PRN: 202501100061" << endl;
-    cout << "Domain: Cold-Drink Flavours" << endl;
+string getMiddleDigits(int key) {
+    string square = to_string(key * key);
 
+    while (square.length() < 4) {
+        square = "0" + square;
+    }
+
+    int start = (square.length() - 2) / 2;
+    return square.substr(start, 2);
+}
+
+int main() {
     vector<int> data = {
         61, 74, 87, 0, 13,
         26, 39, 52, 65, 78,
@@ -27,13 +33,16 @@ int main() {
         56, 69, 82, 95, 8
     };
 
-    cout << "\nPersonalized Dataset:\n";
+    cout << "Q2 Hash Table Project" << endl;
+    cout << "PRN: 202501100061" << endl;
+    cout << "\nMid-Square Calculation:\n";
 
-    for (int value : data) {
-        cout << value << " ";
+    for (int key : data) {
+        cout << "Key: " << key
+             << " | Square: " << key * key
+             << " | Middle digits: "
+             << getMiddleDigits(key) << endl;
     }
-
-    cout << endl;
 
     return 0;
 }
