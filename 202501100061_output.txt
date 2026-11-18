@@ -1,0 +1,76 @@
+Hash Table with Recorded Development Log
+Internal Activity 3 - Question 2
+
+Student PRN: 202501100061
+Domain: Cold-drink flavours
+Hashing Technique: Mid-Square Method
+Collision Handling: Separate Chaining
+Table Size: 29
+
+Personalized Dataset (20 values):
+61, 74, 87, 0, 13, 26, 39, 52, 65, 78, 91, 4, 17, 30, 43, 56, 69, 82, 95, 8
+
+Hash Index Calculations:
+Key    Middle Digits    Hash Index
+61     72               14
+74     47               18
+87     56               27
+0      00               0
+13     16               16
+26     67               9
+39     52               23
+52     70               12
+65     22               22
+78     08               8
+91     28               28
+4      01               1
+17     28               28
+30     90               3
+43     84               26
+56     13               13
+69     76               18
+82     72               14
+95     02               2
+8      06               6
+
+Final Hash Table (Separate Chaining):
+Index 0: 0
+Index 1: 4
+Index 2: 95
+Index 3: 30
+Index 4: Empty
+Index 5: Empty
+Index 6: 8
+Index 7: Empty
+Index 8: 78
+Index 9: 26
+Index 10: Empty
+Index 11: Empty
+Index 12: 52
+Index 13: 56
+Index 14: 61 -> 82
+Index 15: Empty
+Index 16: 13
+Index 17: Empty
+Index 18: 74 -> 69
+Index 19: Empty
+Index 20: Empty
+Index 21: Empty
+Index 22: 65
+Index 23: 39
+Index 24: Empty
+Index 25: Empty
+Index 26: 43
+Index 27: 87
+Index 28: 91 -> 17
+
+Collision Details:
+Bucket 14: 61 -> 82
+Bucket 18: 74 -> 69
+Bucket 28: 91 -> 17
+
+Total input values: 20
+Total inserted elements: 20
+Collision buckets: 3
+
+Validation: SUCCESS
